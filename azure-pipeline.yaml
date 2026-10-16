@@ -1,0 +1,6 @@
+trigger:
+- branch:
+    include:
+      - main
+
+pool: powermanage-pool
