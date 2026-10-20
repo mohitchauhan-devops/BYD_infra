@@ -24,3 +24,28 @@ steps:
       backendAzureRmStorageAccountName: 'mystorageaccount193'
       backendAzureRmContainerName: 'mycont'
       backendAzureRmKey: 'dev.terraform.tfstate'
+
+  - task: TerraformTask@5
+    inputs:
+      provider: 'azurerm'
+      command: 'custom'
+      workingDirectory: '$(System.DefaultWorkingDirectory)/environment/dev'
+      outputTo: 'console'
+      customCommand: 'fmt'
+      environmentServiceNameAzureRM: 'BYD_serviceconnection'
+      environmentAzureRmOverrideSubscriptionID: '82725301-e172-4d2e-920e-a694092383e3'
+
+  - task: TerraformTask@5
+    inputs:
+      provider: 'azurerm'
+      command: 'validate'
+      workingDirectory: '$(System.DefaultWorkingDirectory)/environment/dev'
+
+  - task: TerraformTask@5
+    inputs:
+      provider: 'azurerm'
+      command: 'plan'
+      environmentServiceNameAzureRM: 'BYD_serviceconnection'
+      environmentAzureRmOverrideSubscriptionID: '82725301-e172-4d2e-920e-a694092383e3'
+
+  
