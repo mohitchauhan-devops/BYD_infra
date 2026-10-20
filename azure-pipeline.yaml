@@ -11,3 +11,16 @@ steps:
     displayName: 'Install Terraform'
     inputs:
       terraformVersion: 'latest'
+
+  - task: TerraformTask@5
+    inputs:
+      displayName: Terraform_init
+      provider: 'azurerm'
+      command: 'init'
+      workingDirectory: '$(System.DefaultWorkingDirectory)/environment/dev'
+      backendServiceArm: 'BYD_serviceconnection'
+      backendAzureRmOverrideSubscriptionID: '82725301-e172-4d2e-920e-a694092383e3'
+      backendAzureRmResourceGroupName: 'rg_mohit'
+      backendAzureRmStorageAccountName: 'mystorageaccount193'
+      backendAzureRmContainerName: 'mycont'
+      backendAzureRmKey: 'dev.terraform.tfstate'
